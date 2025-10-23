@@ -42,10 +42,10 @@ public class Theatre {
         opera.printAllActors();
         ballet.printAllActors();
 
-        opera.replaceActor(petrova, ivanov.getSurname());
+        opera.replaceActor(petrova, ivanov.getSurname(), false);
         opera.printAllActors();
 
-        ballet.replaceActor(ivanov, "Негожин");
+        ballet.replaceActor(ivanov, "Негожин", false);
 
         opera.printLibretto();
         ballet.printLibretto();

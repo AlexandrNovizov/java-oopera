@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Show {
 
@@ -34,13 +35,28 @@ public class Show {
         listOfActors.add(actor);
     }
 
-    public void replaceActor(Actor newActor, String replacedAuthorSurname) {
+    public void replaceActor(Actor newActor, String replacedAuthorSurname, boolean replaceAll) {
+        ArrayList<Actor> actorsToReplace = new ArrayList<>();
         for (Actor actor : listOfActors) {
             if (actor.getSurname().equals(replacedAuthorSurname)) {
-                listOfActors.remove(actor);
-                listOfActors.add(newActor);
-                break;
+                actorsToReplace.add(actor);
             }
+        }
+
+        if (!actorsToReplace.isEmpty()) {
+            if (actorsToReplace.size() == 1) {
+                listOfActors.remove(actorsToReplace.getFirst());
+                listOfActors.add(newActor);
+                return;
+            }
+
+            if (replaceAll) {
+                for (Actor actorToReplace : actorsToReplace) {
+                    listOfActors.remove(actorToReplace);
+                }
+                listOfActors.add(newActor);
+            } else System.out.println("Найдено несколько актеров с заданной фамилией, замена отменена");
+            return;
         }
 
         System.out.println("Актер с фамилией '" + replacedAuthorSurname + "' отсутствует в списке спектакля '" + title + "'");
