@@ -35,6 +35,10 @@ public class Show {
     }
 
     public void replaceActor(Actor newActor, String replacedAuthorSurname, boolean replaceAll) {
+        if (listOfActors.contains(newActor)) {
+            System.out.println("Актер уже участвует в спектакле!");
+            return;
+        }
         ArrayList<Actor> actorsToReplace = new ArrayList<>();
         for (Actor actor : listOfActors) {
             if (actor.getSurname().equals(replacedAuthorSurname)) {
